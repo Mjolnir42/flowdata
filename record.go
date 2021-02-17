@@ -29,6 +29,28 @@ type Record struct {
 	AgentID        string    `json:"AgentID"`
 }
 
+func (r Record) Copy() Record {
+	return Record{
+		OctetCount:     r.OctetCount,
+		PacketCount:    r.PacketCount,
+		ProtocolID:     r.ProtocolID,
+		Protocol:       r.Protocol,
+		IPVersion:      r.IPVersion,
+		SrcAddress:     r.SrcAddress,
+		SrcPort:        r.SrcPort,
+		DstAddress:     r.DstAddress,
+		DstPort:        r.DstPort,
+		TcpControlBits: r.TcpControlBits.Copy(),
+		TcpFlags:       r.TcpFlags.Copy(),
+		IngressIf:      r.IngressIf,
+		EgressIf:       r.EgressIf,
+		FlowDirection:  r.FlowDirection,
+		StartMilli:     r.StartMilli,
+		EndMilli:       r.EndMilli,
+		AgentID:        r.AgentID,
+	}
+}
+
 type Flags struct {
 	NS  bool `json:"ns,string"`
 	CWR bool `json:"cwr,string"`
@@ -39,6 +61,20 @@ type Flags struct {
 	RST bool `json:"rst,string"`
 	SYN bool `json:"syn,string"`
 	FIN bool `json:"fin,string"`
+}
+
+func (f Flags) Copy() Flags {
+	return Flags{
+		NS:  f.NS,
+		CWR: f.CWR,
+		ECE: f.ECE,
+		URG: f.ECE,
+		ACK: f.ACK,
+		PSH: f.PSH,
+		RST: f.RST,
+		SYN: f.SYN,
+		FIN: f.FIN,
+	}
 }
 
 // vim: ts=4 sw=4 sts=4 noet fenc=utf-8 ffs=unix

@@ -34,6 +34,12 @@ func (bm *Bitmap) String() string {
 	return fmt.Sprintf("%#x", bm)
 }
 
+func (bm *Bitmap) Copy() Bitmap {
+	b := Bitmap{}
+	copy(b[:], bm[:])
+	return b
+}
+
 func (bm *Bitmap) Check(s string) bool {
 	i, _ := strconv.ParseInt(s, 0, 16)
 	b := make([]byte, 8)
