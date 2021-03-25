@@ -29,30 +29,6 @@ type Record struct {
 	AgentID        string    `json:"AgentID"`
 }
 
-type IOC struct {
-	AgentID   string    `json:"AgentID"`
-	Address   string    `json:"Address"`
-	IPVersion uint8     `json:"IPVersion"`
-	Start     time.Time `json:"DateTimeStart"`
-	End       time.Time `json:"DateTimeEnd"`
-}
-
-func (r Record) ToIOC(addr string) IOC {
-	return IOC{
-		AgentID:   r.AgentID,
-		Address:   addr,
-		IPVersion: r.IPVersion,
-		Start: time.Unix(
-			r.StartMilli.UTC().Unix(),
-			r.StartMilli.UTC().UnixNano(),
-		),
-		End: time.Unix(
-			r.EndMilli.UTC().Unix(),
-			r.EndMilli.UTC().UnixNano(),
-		),
-	}
-}
-
 func (r Record) Copy() Record {
 	return Record{
 		OctetCount:     r.OctetCount,
