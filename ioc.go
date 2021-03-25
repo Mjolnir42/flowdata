@@ -7,6 +7,8 @@
 
 package flowdata // import "github.com/mjolnir42/flowdata"
 
+import "time"
+
 // IOC represents a stripped down version of the information contained
 // inside a record, suitable for comparing against IOCs
 type IOC struct {
