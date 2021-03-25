@@ -27,6 +27,7 @@ type Record struct {
 	StartMilli     time.Time `json:"StartDateTimeMilli"`
 	EndMilli       time.Time `json:"EndDateTimeMilli"`
 	AgentID        string    `json:"AgentID"`
+	RecordID       string    `json:"RecordID"`
 }
 
 func (r Record) Copy() Record {
