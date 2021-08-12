@@ -146,6 +146,7 @@ func (m *Message) Convert() <-chan Record {
 			spew.Dump(`flowdata.message.res/after`, res)
 			ret <- res
 		}
+		close(ret)
 	}()
 	return ret
 }
