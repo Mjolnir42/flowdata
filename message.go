@@ -7,6 +7,8 @@
 
 package flowdata // import "github.com/mjolnir42/flowdata"
 
+import "github.com/davecgh/go-spew/spew"
+
 type Message struct {
 	AgentID  string `json:"AgentID"`
 	Header   Header `json:"Header"`
@@ -26,10 +28,12 @@ type Data []kvpair
 type kvpair map[string]interface{}
 
 func (m *Message) Convert() <-chan Record {
+	spew.Dump(`flowdata.message.M:`, m)
 	ret := make(chan Record)
 	go func() {
 		for i := range m.DataSets {
 			res := Record{AgentID: m.AgentID}
+			spew.Dump(`flowdata.message.res/before`, res)
 			for _, pair := range m.DataSets[i] {
 				if key, ok := pair[`I`].(uint64); ok {
 					switch key {
@@ -139,6 +143,7 @@ func (m *Message) Convert() <-chan Record {
 					}
 				}
 			}
+			spew.Dump(`flowdata.message.res/after`, res)
 			ret <- res
 		}
 	}()
