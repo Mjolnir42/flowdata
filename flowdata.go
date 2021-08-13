@@ -14,7 +14,7 @@ import "net"
 import "fmt"
 
 func FormatIP(addr string) string {
-	raw := net.ParseIP(addr).To16()
+	raw := net.ParseIP(strings.Trim(addr, `"`)).To16()
 	return fmt.Sprintf(
 		"%x:%x:%x:%x:%x:%x:%x:%x",
 		[]byte(raw)[0:2],
