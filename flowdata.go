@@ -9,9 +9,13 @@
 // messages as emitted by vflow.
 package flowdata // import "github.com/mjolnir42/flowdata"
 
-import "time"
-import "net"
-import "fmt"
+import (
+	"fmt"
+	"net"
+	"strconv"
+	"strings"
+	"time"
+)
 
 func FormatIP(addr string) string {
 	raw := net.ParseIP(strings.Trim(addr, `"`)).To16()
@@ -30,6 +34,31 @@ func FormatIP(addr string) string {
 
 func unix2time(tstp int64) time.Time {
 	return time.Unix(tstp/1000, (tstp%1000)*1000000)
+}
+
+func parseUint8(b []byte) uint8 {
+	i64, _ := strconv.ParseUint(string(b), 10, 8)
+	return uint8(i64)
+}
+
+func parseUint16(b []byte) uint16 {
+	i64, _ := strconv.ParseUint(string(b), 10, 16)
+	return uint16(i64)
+}
+
+func parseUint32(b []byte) uint32 {
+	i64, _ := strconv.ParseUint(string(b), 10, 32)
+	return uint32(i64)
+}
+
+func parseUint64(b []byte) uint64 {
+	i64, _ := strconv.ParseUint(string(b), 10, 64)
+	return uint64(i64)
+}
+
+func parseInt64(b []byte) int64 {
+	i64, _ := strconv.ParseInt(string(b), 10, 64)
+	return int64(i64)
 }
 
 // vim: ts=4 sw=4 sts=4 noet fenc=utf-8 ffs=unix
