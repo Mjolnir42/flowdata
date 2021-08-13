@@ -8,6 +8,16 @@
 package flowdata // import "github.com/mjolnir42/flowdata"
 
 const (
+	flagFIN Bitmask = 1 << iota // No more data from sender
+	flagSYN                     // Synchronize sequence numbers
+	flagRST                     // Reset the connection
+	flagPSH                     // Push Function
+	flagACK                     // Acknowledgment field significant
+	flagURG                     // Urgent Pointer field significant
+	flagECE                     // ECN Echo
+	flagCWR                     // Congestion Window Reduced
+	flagNS                      // ECN Nonce Sum
+
 	octetDeltaCount          = 1
 	packetDeltaCount         = 2
 	protocolIdentifier       = 4
@@ -25,15 +35,6 @@ const (
 	flowStartMilliseconds    = 152
 	flowEndMilliseconds      = 153
 
-	flagFIN = "0x0001"
-	flagSYN = "0x0002"
-	flagRST = "0x0004"
-	flagPSH = "0x0008"
-	flagACK = "0x0010"
-	flagURG = "0x0020"
-	flagECE = "0x0040"
-	flagCWR = "0x0080"
-	flagNS  = "0x0100"
 )
 
 // vim: ts=4 sw=4 sts=4 noet fenc=utf-8 ffs=unix

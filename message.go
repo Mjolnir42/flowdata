@@ -141,6 +141,17 @@ func (m *Message) Convert() <-chan Record {
 							res.EndMilli = unix2time(val)
 						}
 					}
+				case tcpControlBits:
+					res.TcpControlBits = ParseBitmask(string(pair.Value))
+					res.TcpFlags.FIN = res.TcpControlBits.Has(flagFIN)
+					res.TcpFlags.SYN = res.TcpControlBits.Has(flagSYN)
+					res.TcpFlags.RST = res.TcpControlBits.Has(flagRST)
+					res.TcpFlags.PSH = res.TcpControlBits.Has(flagPSH)
+					res.TcpFlags.ACK = res.TcpControlBits.Has(flagACK)
+					res.TcpFlags.URG = res.TcpControlBits.Has(flagURG)
+					res.TcpFlags.ECE = res.TcpControlBits.Has(flagECE)
+					res.TcpFlags.CWR = res.TcpControlBits.Has(flagCWR)
+					res.TcpFlags.NS = res.TcpControlBits.Has(flagNS)
 				}
 			}
 			spew.Dump(`flowdata.message.res/after`, res)

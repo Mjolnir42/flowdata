@@ -19,7 +19,7 @@ type Record struct {
 	SrcPort        uint16    `json:"SrcPort"`
 	DstAddress     string    `json:"DstAddress"`
 	DstPort        uint16    `json:"DstPort"`
-	TcpControlBits Bitmap    `json:"TcpControlBits,string"`
+	TcpControlBits Bitmask   `json:"TcpControlBits"`
 	TcpFlags       Flags     `json:"TcpFlags"`
 	IngressIf      uint32    `json:"IngressIf"`
 	EgressIf       uint32    `json:"EgressIf"`
