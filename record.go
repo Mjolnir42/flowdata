@@ -21,9 +21,9 @@ type Record struct {
 	DstPort        uint16    `json:"DstPort"`
 	TcpControlBits Bitmask   `json:"TcpControlBits"`
 	TcpFlags       Flags     `json:"TcpFlags"`
-	IngressIf      uint32    `json:"IngressIf"`
-	EgressIf       uint32    `json:"EgressIf"`
-	FlowDirection  uint8     `json:"FlowDirection"`
+	IngressIf      uint32    `json:"-"`
+	EgressIf       uint32    `json:"-"`
+	FlowDirection  uint8     `json:"-"`
 	StartMilli     time.Time `json:"StartDateTimeMilli"`
 	EndMilli       time.Time `json:"EndDateTimeMilli"`
 	AgentID        string    `json:"AgentID"`
