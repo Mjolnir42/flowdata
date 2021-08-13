@@ -28,6 +28,9 @@ type Record struct {
 	EndMilli       time.Time `json:"EndDateTimeMilli"`
 	AgentID        string    `json:"AgentID"`
 	RecordID       string    `json:"RecordID"`
+	ExpIPv4Addr    string    `json:"-"`
+	ExpIPv6Addr    string    `json:"-"`
+	ExpPID         uint32    `json:"-"`
 }
 
 func (r Record) Copy() Record {
