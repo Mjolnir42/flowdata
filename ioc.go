@@ -26,14 +26,8 @@ func (r Record) ToIOC(addr string) IOC {
 		AgentID:   r.AgentID,
 		Address:   addr,
 		IPVersion: r.IPVersion,
-		Start: time.Unix(
-			r.StartMilli.UTC().Unix(),
-			r.StartMilli.UTC().UnixNano(),
-		),
-		End: time.Unix(
-			r.EndMilli.UTC().Unix(),
-			r.EndMilli.UTC().UnixNano(),
-		),
+		Start:     r.StartMilli.UTC(),
+		End:       r.EndMilli.UTC(),
 	}
 }
 
